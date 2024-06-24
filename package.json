@@ -1,0 +1,11 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@inquirer/prompts": "^5.0.6",
+    "child_process": "^1.0.2",
+    "docxtemplater": "^3.47.4",
+    "figlet": "^1.7.0",
+    "nanospinner": "^1.1.0",
+    "pizzip": "^3.1.7"
+  }
+}

@@ -122,7 +122,7 @@ export const invoiceManagement = async (argv) => {
         choices: buildChoicesClient(clients),
     })
     const invoice_number = await input({ message: 'Enter invoice number' });
-    const devis_number = await input({ message: 'Enter devis number' });
+    const devis_number = await input({ message: 'Enter bill number' });
 
     const invoice_title = await select({
         message: 'Invoice title',
@@ -131,8 +131,8 @@ export const invoiceManagement = async (argv) => {
             { name: "Facture d'acompte", value: "Facture d'acompte" }]
     });
 
-    const date_emission = await input({ message: 'Enter date of emission', default: new Date().toLocaleDateString() });
-    const date_limit = await input({ message: 'Enter date limit for payment', default: new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 30)).toLocaleDateString() });
+    const date_emission = await input({ message: 'Enter issue date (default: today)', default: new Date().toLocaleDateString() });
+    const date_limit = await input({ message: 'Enter payment deadline (default: in 30 days)', default: new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 30)).toLocaleDateString() });
 
 
     const items = await promptItems();

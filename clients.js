@@ -2,6 +2,7 @@ import fs from "fs";
 import select, { Separator } from '@inquirer/select';
 import input from '@inquirer/input';
 import checkbox from '@inquirer/checkbox';
+import { createSpinner } from 'nanospinner'
 
 const CLIENTS_FOLDER = "./clients"
 
@@ -30,6 +31,8 @@ const addClient = async () => {
     const client_city = await input({ message: 'Enter address second line' });
     const client_country = await input({ message: 'Enter country / country code' });
 
+    const spinner = createSpinner('Saving client...').start();
+
     let client = {
         client_full_name: client_full_name,
         client_address: client_address,
@@ -42,7 +45,8 @@ const addClient = async () => {
     let json = JSON.stringify(client);
 
     fs.writeFileSync(`${CLIENTS_FOLDER}/${file_name}`, json);
-    console.log(`Successfully added client ${file_name}`)
+    spinner.success();
+    console.log("\n");
 }
 
 const displayClientList = (client_list) => {
@@ -75,7 +79,7 @@ const removeClient = async (client_list) => {
 
     for (let a of answer) {
         fs.unlinkSync(`${CLIENTS_FOLDER}/${a}`)
-        console.log(`🗑️  Deleted ${a} !`);
+        console.log(`🗑️  Deleted ${a} !\n\n`);
     }
 }
 
